@@ -36,9 +36,11 @@
   font-weight: 700;
 }
 
-.tableHeadCell svg {
-  margin: 0 auto;
-  display: block;
+.cellItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
 }
 
 .tableBody td {

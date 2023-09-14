@@ -9,13 +9,13 @@ import UserEditModal from '../UserEditModal/UserEditModal';
 import styles from './UserTable.module.css';
 
 const userTableHeader = [
-  'Name',
-  'Email',
-  'Designation',
-  'Department',
-  'Role',
-  'Edit',
-  'Delete',
+  { title: 'Name', name: 'firstName' },
+  { title: 'Email', name: 'email' },
+  { title: 'Designation', name: 'designation' },
+  { title: 'Department', name: 'department' },
+  { title: 'Role', name: 'role' },
+  { title: 'Edit', name: null },
+  { title: 'Delete', name: null },
 ];
 
 function UserTable() {
@@ -31,7 +31,8 @@ function UserTable() {
     () => getUsers(pageNumber, search, sortBy),
   );
 
-  const handleSortByFilter = (columnName: string) => {
+  const handleSortByFilter = (columnName: string | null) => {
+    if (!columnName) return;
     if (columnName === sortBy) setSortBy(`-${columnName}`);
     else setSortBy(columnName);
   };
@@ -70,15 +71,21 @@ function UserTable() {
               />
             </div>
             <tr>
-              {userTableHeader.map((columnName) => (
+              {userTableHeader.map((column) => (
                 <th
-                  key={columnName}
-                  onClick={() => handleSortByFilter(columnName)}
+                  key={column.title}
+                  onClick={() => handleSortByFilter(column.name)}
                   className={styles.tableHeadCell}
                 >
-                  {columnName}
-                  {sortBy === columnName ? <BiSolidUpArrow /> : null}
-                  {sortBy === `-${columnName}` ? <BiSolidDownArrow /> : null}
+                  <div className={styles.cellItem}>
+                    {column.title}
+                    {sortBy && sortBy === column.name ? (
+                      <BiSolidUpArrow />
+                    ) : null}
+                    {sortBy && sortBy === `-${column.name}` ? (
+                      <BiSolidDownArrow />
+                    ) : null}
+                  </div>
                 </th>
               ))}
             </tr>
