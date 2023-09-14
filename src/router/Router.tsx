@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import useUserStatus from '../hooks/useUserStatus';
 import Alerts from '../pages/Alerts/Alerts';
+import Dashboard from '../pages/Dashboard/Dashboard';
 import DashboardLayout from '../pages/DashboardLayout/DashboardLayout';
 import DefaultLayout from '../pages/DefaultLayout';
 import Error from '../pages/Error/Error';
@@ -38,7 +39,7 @@ function Router() {
       </Route>
 
       <Route path="dashboard" element={<DashboardLayout />}>
-        <Route index element={<Home />} />
+        <Route index element={<Dashboard />} />
         <Route path="inventory" element={<Inventory />} />
         <Route path="users" element={<UserTable />} />
         <Route path="log" element={<InventoryLog />} />
