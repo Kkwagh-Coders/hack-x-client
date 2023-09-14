@@ -78,22 +78,13 @@ function Header() {
           </ul>
           <div className={styles.buttons}>
             {!isLoggedIn ? (
-              <>
-                <Link
-                  to="/login"
-                  onClick={handleCloseNavbar}
-                  className={`default-button default-outline-button ${styles.authButton}`}
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  onClick={handleCloseNavbar}
-                  className={`default-button ${styles.authButton}`}
-                >
-                  Register
-                </Link>
-              </>
+              <Link
+                to="/login"
+                onClick={handleCloseNavbar}
+                className={`default-button default-outline-button ${styles.authButton}`}
+              >
+                Login
+              </Link>
             ) : (
               <LogoutButton
                 className={`default-button ${styles.authButton}`}

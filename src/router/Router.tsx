@@ -12,7 +12,6 @@ import InventoryLog from '../pages/InventoryLog/InventoryLog';
 import Loading from '../pages/Loading/Loading';
 import Login from '../pages/Login/Login';
 import NotFound from '../pages/NotFound/NotFound';
-import Register from '../pages/Register/Register';
 import UserTable from '../pages/UserTable/UserTable';
 
 // TODO: Implement Auth Middleware for restricted routes
@@ -35,7 +34,6 @@ function Router() {
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
       </Route>
 
       <Route path="dashboard" element={<DashboardLayout />}>
