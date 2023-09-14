@@ -19,6 +19,10 @@
   margin: 0 1.5em;
 }
 
+.logo > a {
+  text-decoration: none;
+}
+
 .menuIcon {
   color: rgb(var(--brown-dark-color));
   font-size: 1.5rem;

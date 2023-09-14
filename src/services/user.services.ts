@@ -6,9 +6,10 @@ import { BASE_API_URL } from './serverConfig';
 
 export const getUserStatus = () => {
   const url = `${BASE_API_URL}/user/status`;
+
   return {
     isLoading: false,
-    isLoggedIn: false,
+    isLoggedIn: true,
     user: null,
   };
 

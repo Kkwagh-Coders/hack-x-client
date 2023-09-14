@@ -64,6 +64,17 @@ function Header() {
             >
               Home
             </CustomNavLink>
+
+            {isLoggedIn ? (
+              <CustomNavLink
+                path="/dashboard"
+                onClickCallback={handleCloseNavbar}
+                className={styles.navItem}
+                activeClassName={styles.navItemActive}
+              >
+                Dashboard
+              </CustomNavLink>
+            ) : null}
           </ul>
           <div className={styles.buttons}>
             {!isLoggedIn ? (
@@ -85,7 +96,7 @@ function Header() {
               </>
             ) : (
               <LogoutButton
-                className={styles.navItem}
+                className={`default-button ${styles.authButton}`}
                 onClickCallback={handleCloseNavbar}
               >
                 Logout
