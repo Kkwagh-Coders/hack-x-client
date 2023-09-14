@@ -36,16 +36,16 @@ function LoginRequiredModal({ closeModalCallback }: Props) {
         </p>
 
         <div className={styles.buttons}>
+          <Link to="/login" className={styles.loginButton}>
+            Login
+          </Link>
+
           <input
             className={styles.backButton}
             onClick={closeModalCallback}
             type="button"
             value="Close"
           />
-
-          <Link to="/login" className={styles.loginButton}>
-            Login
-          </Link>
         </div>
       </div>
     </div>
