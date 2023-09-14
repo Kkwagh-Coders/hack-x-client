@@ -6,6 +6,7 @@ import { GoLog } from 'react-icons/go';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { MdOutlineInventory, MdOutlineSpaceDashboard } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import CustomSidebarLink from '../CustomSidebarLink/CustomSidebarLink';
 import styles from './SideNavbar.module.css';
 
 const navBarLinks = [
@@ -70,16 +71,16 @@ function SideNavbar() {
           <div className={styles.sidebarContent}>
             <ul className={styles.lists}>
               {navBarLinks?.map(({ title, Icon, link }) => (
-                <li className={styles.list} key={title}>
-                  <Link
-                    to={link}
-                    className={styles.navLink}
-                    onClick={closeSideBar}
-                  >
-                    <Icon className={styles.navIcon} />
-                    <span className={styles.link}>{title}</span>
-                  </Link>
-                </li>
+                <CustomSidebarLink
+                  path={link}
+                  key={title}
+                  className={styles.list}
+                  activeClassName={styles.activeList}
+                  onClickCallback={closeSideBar}
+                >
+                  <Icon className={styles.navIcon} />
+                  <span className={styles.link}>{title}</span>
+                </CustomSidebarLink>
               ))}
             </ul>
             <div className={styles.bottomContent}>

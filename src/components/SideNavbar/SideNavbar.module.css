@@ -69,7 +69,7 @@
   list-style: none;
 }
 
-.navLink {
+.sidebarContent a {
   display: flex;
   align-items: center;
   padding: 0.875rem 0.75rem;
@@ -79,11 +79,12 @@
   gap: 0.5rem;
 }
 
-.lists .navLink:hover {
+.lists a:hover,
+.activeList a {
   background-color: rgb(var(--accent-color));
 }
 
-.bottomContent .navLink:hover {
+.bottomContent a:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -99,7 +100,8 @@
   font-weight: 400;
 }
 
-.lists .navLink:hover > :where(.link, .navIcon) {
+.lists a:hover > :where(.link, .navIcon),
+.activeList a > :where(.link, .navIcon) {
   color: rgb(var(--white-color));
 }
 
