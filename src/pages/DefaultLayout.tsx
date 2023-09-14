@@ -5,7 +5,13 @@ function DefaultLayout() {
   return (
     <>
       <Header />
-      <Outlet />
+      <div
+        style={{
+          paddingTop: 'var(--navbar-height)',
+        }}
+      >
+        <Outlet />
+      </div>
     </>
   );
 }
