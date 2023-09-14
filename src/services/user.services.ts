@@ -72,5 +72,3 @@ export const editUser = (user: User) => {
     (response: any) => response.data.message,
   ) as Promise<string>;
 };
-
-export default {};

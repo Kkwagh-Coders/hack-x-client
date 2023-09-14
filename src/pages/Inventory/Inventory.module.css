@@ -1,0 +1,117 @@
+.Inventory {
+  padding: 1rem 2rem;
+}
+
+.searchBarInput {
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+}
+
+.table {
+  min-width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 5px 10px #e1e5ee;
+  background-color: rgb(var(--white-color));
+  text-align: left;
+  overflow: hidden;
+
+  margin-block: 1rem 1.5rem;
+}
+
+.tableHeader {
+  box-shadow: 0 5px 10px #e1e5ee;
+}
+
+.tableHeadCell {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cellItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+.tableBody td {
+  padding: 1rem 2rem;
+}
+
+.role {
+  border-radius: 0.2rem;
+  background-color: red;
+  padding: 0.2rem 1rem;
+  text-align: center;
+}
+
+.adminRole {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
+.staffRole {
+  background-color: #fff0c2;
+  color: #a68b00;
+}
+
+.teacherRole {
+  background-color: #c8e6c9;
+  color: #388e3c;
+}
+
+.tableBody tr:nth-child(even) {
+  background-color: #f4f6fb;
+}
+
+.actionCell {
+  font-size: 1.5rem;
+  /* text-align: center; */
+}
+
+.viewButton {
+  cursor: pointer;
+}
+
+.deleteButton {
+  cursor: pointer;
+
+  color: red;
+  text-align: center;
+}
+
+.editButton {
+  cursor: pointer;
+}
+
+.pageButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pageButton {
+  background-color: rgb(var(--accent-color));
+  color: white;
+
+  border-radius: 0.2rem;
+  padding: 0.3rem 1rem;
+  text-align: center;
+
+  width: 8rem;
+}
+
+.pageNumber {
+  font-weight: 500;
+}
