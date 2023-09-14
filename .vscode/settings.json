@@ -1,0 +1,9 @@
+{
+  "prettier.endOfLine": "lf",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "cSpell.words": ["linebreak", "noninteractive", "reduxjs", "tanstack"]
+}
