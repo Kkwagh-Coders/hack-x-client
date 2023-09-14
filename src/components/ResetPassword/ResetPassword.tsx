@@ -6,7 +6,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { BiEnvelope, BiLockAlt } from 'react-icons/bi';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-import { resetUserPassword } from '../../services/user.services';
+import { resetUserPassword } from '../../services/auth.services';
 import styles from './ResetPassword.module.css';
 
 interface SuccessResponse {

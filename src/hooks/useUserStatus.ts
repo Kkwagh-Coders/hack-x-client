@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useAppDispatch } from '../redux/store';
 import { userAction } from '../redux/user/userState';
-import { getUserStatus } from '../services/user.services';
+import { getUserStatus } from '../services/auth.services';
 
 const useUserStatus = () => {
   const dispatch = useAppDispatch();

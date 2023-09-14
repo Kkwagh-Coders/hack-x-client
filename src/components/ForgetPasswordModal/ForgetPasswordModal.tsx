@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 import { BiEnvelope } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { sendForgotPasswordMail } from '../../services/user.services';
+import { sendForgotPasswordMail } from '../../services/auth.services';
 import styles from './ForgetPasswordModal.module.css';
 
 interface Props {

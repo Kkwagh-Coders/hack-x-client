@@ -7,7 +7,7 @@ import { BiEnvelope, BiLockAlt } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import ForgetPasswordModal from '../../components/ForgetPasswordModal/ForgetPasswordModal';
-import { loginUser } from '../../services/user.services';
+import { loginUser } from '../../services/auth.services';
 import styles from './Login.module.css';
 
 interface SuccessResponse {

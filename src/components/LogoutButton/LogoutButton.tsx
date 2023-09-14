@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userAction } from '../../redux/user/userState';
-import { logoutUser } from '../../services/user.services';
+import { logoutUser } from '../../services/auth.services';
 
 type Props = {
   className: string;
