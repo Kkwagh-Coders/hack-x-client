@@ -1,8 +1,20 @@
-import { Item } from '../types/inventory.types';
+import { InventoryLog, Item } from '../types/inventory.types';
+import { User } from '../types/user.types';
 import fakeRequest from './fakeRequest';
 import { BASE_API_URL } from './serverConfig';
 
 // TODO: Routes
+const user: User = {
+  userId: 'user2',
+  firstName: 'user2',
+  middleName: 'user2',
+  lastName: 'user2',
+  email: 'user2',
+  designation: 'user2',
+  department: 'user2',
+  role: 'Teacher',
+};
+
 const items: Item[] = [
   {
     itemId: 'name',
@@ -15,6 +27,40 @@ const items: Item[] = [
     createdAt: 'name',
     updatedAt: 'name',
     expiry: 'name',
+  },
+];
+
+const logItems: InventoryLog[] = [
+  {
+    logId: 'k',
+    userId: 'name',
+    user,
+    oldItem: {
+      itemId: 'name',
+      name: 'name',
+      description: 'name',
+      working: 10,
+      notWorking: 0,
+      location: 'name',
+      category: 'name',
+      createdAt: 'name',
+      updatedAt: 'name',
+      expiry: 'name',
+    },
+    newItem: {
+      itemId: 'name',
+      name: 'name',
+      description: 'name',
+      working: 5,
+      notWorking: 5,
+      location: 'name',
+      category: 'name',
+      createdAt: 'name',
+      updatedAt: 'name',
+      expiry: 'name',
+    },
+    createdAt: 'name',
+    action: 'Update',
   },
 ];
 
@@ -53,4 +99,19 @@ export const editItem = (item: Item) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (response: any) => response.data.message,
   ) as Promise<string>;
+};
+
+export const getInventoryLog = (
+  pageNumber: number,
+  search: string,
+  sortBy: string | null,
+) => {
+  console.log('Item');
+  console.log(sortBy, search, pageNumber);
+
+  const url = `${BASE_API_URL}/user/status`;
+  return fakeRequest({ url }, { logItems }, false).then(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (response: any) => response.data.logItems,
+  ) as Promise<InventoryLog[]>;
 };
