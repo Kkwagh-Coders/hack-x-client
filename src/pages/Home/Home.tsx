@@ -13,10 +13,8 @@ function Home() {
       <section className={styles.hero}>
         <div className="container">
           <h1 className={styles.title}>
-            <span>Simplify </span>
-            <span className={styles.underlineSpan}>
-              Inventory Management with Us
-            </span>
+            <span>Simplify Inventory with</span>
+            <span className={styles.underlineSpan}>Inventory Management</span>
           </h1>
           <p>
             Inventory Management System offers real-time tracking, intuitive
@@ -37,9 +35,7 @@ function Home() {
       <section className={styles.facilities} id="aim">
         <div className="container">
           <h2>
-            <span>
-              Streamline your inventory, reduce costs, and improve efficiency
-            </span>
+            <span>Improve your Inventory Game</span>
             <span className={styles.underlineSpan}>
               with our Inventory Management System
             </span>
@@ -97,9 +93,7 @@ function Home() {
             <div className={styles.links}>
               <h2>Links</h2>
               <Link to="/credits">Credits</Link>
-              <a href="mailto:officialinterviewexperience@gmail.com">
-                Contact Us
-              </a>
+              <a href="mailto:suhaanbhandary1@gmail.com">Contact Us</a>
             </div>
           </div>
         </div>
