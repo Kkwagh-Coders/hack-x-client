@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import ResetPassword from '../components/ResetPassword/ResetPassword';
 import useUserStatus from '../hooks/useUserStatus';
 import Alerts from '../pages/Alerts/Alerts';
 import Dashboard from '../pages/Dashboard/Dashboard';
@@ -34,6 +35,7 @@ function Router() {
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Route>
 
       <Route path="dashboard" element={<DashboardLayout />}>

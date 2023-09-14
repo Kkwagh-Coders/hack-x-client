@@ -30,7 +30,6 @@ export const registerUser = (user: User) => {
 export const loginUser = (email: string, password: string) => {
   const url = `${BASE_API_URL}/user/login`;
   const user = { email, password };
-  return { message: 'register' };
 
   return axios
     .post<{ message: string }>(url, user, { withCredentials: true })
@@ -47,7 +46,6 @@ export const logoutUser = () => {
 export const sendForgotPasswordMail = (email: string) => {
   const url = `${BASE_API_URL}/user/forgot-password`;
   const body = { email };
-  return { message: 'register' };
 
   return axios
     .post<{ message: string }>(url, body, { withCredentials: true })
@@ -61,7 +59,6 @@ export const resetUserPassword = (
 ) => {
   const url = `${BASE_API_URL}/user/reset-password/${token}`;
   const body = { email, newPassword };
-  return { message: 'register' };
 
   return axios
     .post<{ message: string }>(url, body)
