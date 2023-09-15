@@ -1,0 +1,68 @@
+.Dashboard {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(11.25rem, auto);
+  background-color: rgb(227, 242, 253);
+}
+
+.box:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.box1,
+.box2,
+.box3,
+.box4 {
+  grid-column: span 1;
+  grid-row: span 1;
+  height: 40%;
+}
+
+.box7,
+.box8,
+.box9 {
+  height: 40%;
+}
+
+.box5,
+.box6 {
+  height:;
+}
+
+.box1,
+.box2,
+.box3,
+.box4,
+.box6,
+.box7,
+.box8,
+.box9 {
+  background-color: white;
+  margin: 1rem;
+  padding: 1.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+.box {
+  padding: 0;
+}
+.box5 {
+  grid-column: span 3;
+  grid-row: span 1;
+  background-color: white;
+  margin: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.box6 {
+  background-color: white;
+  margin: 1rem;
+  padding: 1.2rem;
+}
+
+.box7 {
+  grid-column: span 2;
+  grid-row: span 1;
+}

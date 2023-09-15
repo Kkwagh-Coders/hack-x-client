@@ -1,0 +1,36 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0.5rem 0.875rem;
+    border-radius: 0.3125rem;
+    width: 33%;
+}
+
+.card:first-child{
+    background-color: azure;
+}
+
+.card:nth-child(2){
+    background-color: rgb(141, 174, 174);
+}
+
+.card:nth-child(3){
+    background-color: rgb(125, 192, 192);
+}
+
+.cardInner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardInner > .card-icon{
+    font-size: 1.5625rem;
+}
+
+.cardSection{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
