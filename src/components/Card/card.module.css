@@ -1,18 +1,21 @@
 .card {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
-  width: 100%; /* Makes it responsive */
-  background-color: rgb(255, 255, 255);
-  padding: 1rem;
+  gap: 1.5rem;
+  color: rgb(12, 20, 37);
+
+  border-radius: 0.8rem;
+  padding: 1.7rem 1.7rem;
+
+  border-radius: 0.8rem;
 }
 
 .icon {
-  color: rgb(129, 62, 225);
+  color: var(--card-color);
   border-radius: 50%;
-  background-color: rgb(242, 235, 252);
+  background-color: var(--card-background-color);
   padding: 0.75rem;
-  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,10 +28,18 @@
 
 .cardInner {
   font-size: 1.125rem;
-  margin: 0;
 }
 
 .cardInner h3 {
   font-size: 1.125rem;
-  margin: 0;
+}
+
+.cardCount {
+  line-height: 1;
+  font-size: 1.35rem;
+}
+
+.cardTitle {
+  color: rgb(176, 178, 190);
+  font-size: 1rem;
 }

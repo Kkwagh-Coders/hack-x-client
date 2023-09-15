@@ -12,7 +12,7 @@ const data = [
 function PieChartBox() {
   return (
     <div className={styles.PieChartBox}>
-      <h1>Leads by Source</h1>
+      <h2>Categories</h2>
       <div className={styles.chart}>
         <ResponsiveContainer width="99%" height={300}>
           <PieChart>
@@ -21,8 +21,8 @@ function PieChartBox() {
             />
             <Pie
               data={data}
-              innerRadius={'70%'}
-              outerRadius={'90%'}
+              innerRadius="70%"
+              outerRadius="90%"
               paddingAngle={5}
               dataKey="value"
             >
@@ -35,15 +35,14 @@ function PieChartBox() {
       </div>
       <div className={styles.options}>
         {data.map((item) => (
-          <div className="option" key={item.name}>
-            <div className="title">
+          <div className={styles.option} key={item.name}>
+            <div className={styles.title}>
               <div
                 className={styles.dot}
                 style={{ backgroundColor: item.color }}
               />
               <span>{item.name}</span>
             </div>
-            <span>{item.value}</span>
           </div>
         ))}
       </div>
