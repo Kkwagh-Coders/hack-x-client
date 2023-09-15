@@ -18,9 +18,9 @@ const colorArray = [
   '#008080', // Teal
 ];
 
-function getRandomColor(index: number): string {
+function getColors(index: number): string {
   const randomIndex = index % colorArray.length;
   return colorArray[randomIndex];
 }
 
-export default getRandomColor;
+export default getColors;

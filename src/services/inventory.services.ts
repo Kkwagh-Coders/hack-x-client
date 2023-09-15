@@ -110,3 +110,19 @@ export const getInventoryLogDashboard = () => {
     .get<ResponseType>(url.href, { withCredentials: true })
     .then((res) => res.data.data);
 };
+
+export const getCategoryData = () => {
+  const url = `${BASE_API_URL}/item/count`;
+
+  type ResponseType = {
+    message: string;
+    data: {
+      value: string;
+      name: string;
+    }[];
+  };
+
+  return axios
+    .get<ResponseType>(url, { withCredentials: true })
+    .then((res) => res.data.data);
+};

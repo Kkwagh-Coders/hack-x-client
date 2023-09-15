@@ -1,15 +1,23 @@
+import { useQuery } from '@tanstack/react-query';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { getCategoryData } from '../../services/inventory.services';
+import getColors from '../../utils/getColors';
 import styles from './piechart.module.css';
 
-const data = [
-  { name: 'autoCAD', value: 400, color: '#0088FE' },
-  { name: 'Fusion360', value: 300, color: '#00C49F' },
-  { name: 'Unity', value: 300, color: '#FFBB28' },
-  { name: 'Windows', value: 200, color: '#FF8042' },
-  // { name: "Visual Studio", value: 100, color: "#FF34503"}
-];
-
 function PieChartBox() {
+  const { data } = useQuery(['category-count'], getCategoryData);
+
+  const pieChartData = [];
+  if (data) {
+    for (let i = 0; i < data?.length; i += 1) {
+      pieChartData.push({
+        name: data[i].name,
+        value: data[i].value,
+        color: getColors(i),
+      });
+    }
+  }
+
   return (
     <div className={styles.PieChartBox}>
       <h2>Categories</h2>
@@ -20,13 +28,13 @@ function PieChartBox() {
               contentStyle={{ background: 'white', borderRadius: '5px' }}
             />
             <Pie
-              data={data}
+              data={pieChartData}
               innerRadius="70%"
               outerRadius="90%"
               paddingAngle={5}
               dataKey="value"
             >
-              {data.map((item) => (
+              {pieChartData?.map((item) => (
                 <Cell key={item.name} fill={item.color} />
               ))}
             </Pie>
@@ -34,7 +42,7 @@ function PieChartBox() {
         </ResponsiveContainer>
       </div>
       <div className={styles.options}>
-        {data.map((item) => (
+        {pieChartData.map((item) => (
           <div className={styles.option} key={item.name}>
             <div className={styles.title}>
               <div
