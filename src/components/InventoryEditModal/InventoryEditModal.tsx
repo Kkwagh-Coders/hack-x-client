@@ -51,7 +51,8 @@ function InventoryEditModal({
         .max(
           item.notWorking,
           `New Quantity Should be Less than ${item.notWorking}`,
-        ),
+        )
+        .min(0, 'Quantity Cannot be Negative'),
     }),
     onSubmit: (values) => mutate(values),
   });
