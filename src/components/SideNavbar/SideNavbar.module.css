@@ -130,3 +130,13 @@
   left: var(--sidebar-width);
   pointer-events: auto;
 }
+
+.navLink {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 0.75rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  gap: 0.5rem;
+}

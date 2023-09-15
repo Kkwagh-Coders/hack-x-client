@@ -7,6 +7,7 @@ import { IoMdNotificationsOutline } from 'react-icons/io';
 import { MdOutlineInventory, MdOutlineSpaceDashboard } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import CustomSidebarLink from '../CustomSidebarLink/CustomSidebarLink';
+import LogoutButton from '../LogoutButton/LogoutButton';
 import styles from './SideNavbar.module.css';
 
 const navBarLinks = [
@@ -95,10 +96,15 @@ function SideNavbar() {
                 </Link>
               </li>
               <li className={styles.list}>
-                <Link to="/" className={styles.navLink}>
-                  <BiLogOut className={styles.navIcon} />
-                  <span className={styles.link}>Logout</span>
-                </Link>
+                <LogoutButton
+                  className={styles.navLink}
+                  onClickCallback={() => console.log('Logout')}
+                >
+                  <>
+                    <BiLogOut className={styles.navIcon} />
+                    <span className={styles.link}>Logout</span>
+                  </>
+                </LogoutButton>
               </li>
             </div>
           </div>
