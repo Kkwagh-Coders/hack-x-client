@@ -4,7 +4,7 @@ import styles from './card.module.css';
 type Props = {
   cardTitle: string;
   CardIcon: IconType;
-  cardCount: number;
+  cardCount: string;
   className: string;
 };
 function Card({ cardTitle, CardIcon, cardCount, className }: Props) {
