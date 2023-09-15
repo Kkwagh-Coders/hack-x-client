@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
@@ -21,6 +21,8 @@ type AddUserModalProps = {
 const roles: UserRole[] = ['admin', 'teacher', 'staff'];
 
 function AddUserModal({ closeModalCallback }: AddUserModalProps) {
+  const queryClient = useQueryClient();
+
   // prettier-ignore
   const { mutate, isLoading } = useMutation<
   SuccessResponse,
@@ -33,6 +35,7 @@ function AddUserModal({ closeModalCallback }: AddUserModalProps) {
     },
     onSuccess: (data) => {
       toast.success(data.message);
+      queryClient.refetchQueries(['users']);
       closeModalCallback();
     },
   });

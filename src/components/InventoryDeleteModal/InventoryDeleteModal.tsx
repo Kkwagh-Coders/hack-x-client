@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { deleteItem } from '../../services/inventory.services';
@@ -14,6 +15,7 @@ function InventoryDeleteModal({
   closeModalCallback,
 }: InventoryDeleteModalProps) {
   const backdropRef = useRef(null);
+  const queryClient = useQueryClient();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,6 +24,7 @@ function InventoryDeleteModal({
 
     try {
       const message = await deleteItem(item._id);
+      queryClient.refetchQueries(['inventory']);
       toast.success(message);
       setIsLoading(false);
       closeModalCallback();

@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { deleteUser } from '../../services/user.services';
@@ -11,6 +12,7 @@ type UserDeleteModalProps = {
 
 function UserDeleteModal({ user, closeModalCallback }: UserDeleteModalProps) {
   const backdropRef = useRef(null);
+  const queryClient = useQueryClient();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,6 +21,7 @@ function UserDeleteModal({ user, closeModalCallback }: UserDeleteModalProps) {
 
     try {
       const message = await deleteUser(user._id);
+      queryClient.refetchQueries(['users']);
       toast.success(message);
       setIsLoading(false);
       closeModalCallback();

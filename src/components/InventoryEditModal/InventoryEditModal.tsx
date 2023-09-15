@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
@@ -23,6 +23,8 @@ function InventoryEditModal({
   item,
   closeModalCallback,
 }: InventoryEditModalProps) {
+  const queryClient = useQueryClient();
+
   // prettier-ignore
   const { mutate, isLoading } = useMutation<
     SuccessResponse,
@@ -34,6 +36,8 @@ function InventoryEditModal({
         toast.error(error.response.data.message);
       },
       onSuccess: (data) => {
+        queryClient.refetchQueries(['inventory']);
+
         toast.success(data.message || 'Item Added to Inventory');
         closeModalCallback();
       },
