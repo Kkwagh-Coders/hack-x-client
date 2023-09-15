@@ -1,36 +1,29 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { BiDetail, BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
+import { BiDetail } from 'react-icons/bi';
 import InventoryLogViewModal from '../../components/InventoryLogViewModal/InventoryLogViewModal';
 import { getInventoryLog } from '../../services/inventory.services';
 import { InventoryLog as InventoryLogType } from '../../types/inventory.types';
 import styles from './InventoryLog.module.css';
 
 const userTableHeader = [
-  { title: 'By', name: 'user.firstName' },
+  { title: 'By', name: 'userId.firstName' },
+  { title: 'Email', name: 'userId.email' },
   { title: 'Created At', name: 'createdAt' },
   { title: 'Action', name: 'action' },
   { title: 'View', name: null },
 ];
 
 function InventoryLog() {
-  const [search, setSearch] = useState('');
-  const [sortBy, setSortBy] = useState<string | null>(null);
   const [pageNumber, setPageNumber] = useState(1);
 
   const [inventoryLogForView, setInventoryLogForView] =
     useState<InventoryLogType | null>(null);
 
   const { data: logTableData, isLoading } = useQuery(
-    ['inventory-log', pageNumber, sortBy, search],
-    () => getInventoryLog(pageNumber, search, sortBy),
+    ['inventory-log', pageNumber],
+    () => getInventoryLog(pageNumber),
   );
-
-  const handleSortByFilter = (columnName: string | null) => {
-    if (!columnName) return;
-    if (columnName === sortBy) setSortBy(`-${columnName}`);
-    else setSortBy(columnName);
-  };
 
   return (
     <>
@@ -48,31 +41,10 @@ function InventoryLog() {
 
         <table className={styles.table}>
           <thead className={styles.tableHeader}>
-            <div className={styles.searchBar}>
-              <input
-                type="text"
-                value={search}
-                onChange={(event) => setSearch(event?.target.value)}
-                className={styles.searchBarInput}
-                placeholder="Search..."
-              />
-            </div>
             <tr>
               {userTableHeader.map((column) => (
-                <th
-                  key={column.title}
-                  onClick={() => handleSortByFilter(column.name)}
-                  className={styles.tableHeadCell}
-                >
-                  <div className={styles.cellItem}>
-                    {column.title}
-                    {sortBy && sortBy === column.name ? (
-                      <BiSolidUpArrow />
-                    ) : null}
-                    {sortBy && sortBy === `-${column.name}` ? (
-                      <BiSolidDownArrow />
-                    ) : null}
-                  </div>
+                <th key={column.title} className={styles.tableHeadCell}>
+                  <div className={styles.cellItem}>{column.title}</div>
                 </th>
               ))}
             </tr>
@@ -81,8 +53,9 @@ function InventoryLog() {
           <tbody className={styles.tableBody}>
             {logTableData?.map((log) => {
               return (
-                <tr key={log.logId}>
-                  <td>{log.user.firstName}</td>
+                <tr key={log._id}>
+                  <td>{log.userId.firstName}</td>
+                  <td>{log.userId.email}</td>
                   <td>{log.createdAt}</td>
 
                   {/* TODO: Assign color to the action like the user */}

@@ -42,7 +42,7 @@ function InventoryLogViewModal({
 
       <div className={styles.container}>
         <h2 className={styles.title}>Log Detail</h2>
-        <p>User: {log.user.email}</p>
+        <p>User: {log.userId.email}</p>
         <div className={styles.contentBlock}>
           <p className={styles.contentTitle}>Date</p>
           <p className={styles.content}>{log.createdAt}</p>

@@ -74,25 +74,12 @@ export const createItem = (item: ItemCreateForm) => {
     .then((response) => response.data);
 };
 
-export const getInventoryLog = (
-  pageNumber: number,
-  search: string,
-  sortBy: string | null,
-) => {
+export const getInventoryLog = (pageNumber: number) => {
   const limit = 10;
-  let sort = 'name';
-  let type = 1;
-  if (sortBy) {
-    sort = sortBy[0] === '-' ? sortBy?.substring(1) : sortBy;
-    type = sortBy[0] === '-' ? -1 : 1;
-  }
 
-  const url = new URL(`${BASE_API_URL}/item`);
-  url.searchParams.set('search', search);
+  const url = new URL(`${BASE_API_URL}/item/logs`);
   url.searchParams.set('page', pageNumber.toString());
   url.searchParams.set('limit', limit.toString());
-  url.searchParams.set('sortBy', sort);
-  url.searchParams.set('type', type.toString());
 
   type ResponseType = {
     message: string;

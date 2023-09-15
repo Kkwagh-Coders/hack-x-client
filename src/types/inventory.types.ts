@@ -36,7 +36,7 @@ type ActionType = 'created' | 'updated' | 'deleted';
 
 export type InventoryLog = {
   _id: string;
-  user: User;
+  userId: User;
   oldItem: Item;
   newItem: Item;
   createdAt: string;
