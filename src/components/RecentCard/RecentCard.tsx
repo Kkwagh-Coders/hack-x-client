@@ -1,19 +1,24 @@
+import { useQuery } from '@tanstack/react-query';
 import { Table } from 'antd';
-import { useEffect, useState } from 'react';
-import { getItems } from '../../services/DashboardService/getItems';
+import { getInventoryLogDashboard } from '../../services/inventory.services';
 import styles from './RecentCard.module.css';
 
 function RecentCard() {
-  const [dataSource, setDataSource] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const { data, isLoading } = useQuery(['inventory-log'], () =>
+    getInventoryLogDashboard(),
+  );
 
-  useEffect(() => {
-    setLoading(true);
-    getItems().then((res) => {
-      setDataSource(res.products.splice(0, 8));
-      setLoading(false);
-    });
-  }, []);
+  const dataSource = [];
+
+  if (data) {
+    for (let i = 0; i < data?.length; i += 1) {
+      dataSource.push({
+        user: data[i].userId.firstName,
+        item: data[i].newItem.name || data[i].oldItem.name,
+        action: data[i].action,
+      });
+    }
+  }
 
   return (
     <div className={styles.recentCard}>
@@ -22,21 +27,20 @@ function RecentCard() {
         className={styles.table}
         columns={[
           {
-            title: 'Name',
-            dataIndex: 'title',
+            title: 'User',
+            dataIndex: 'user',
           },
-
           {
-            title: 'UserId',
-            dataIndex: 'quantity',
+            title: 'Item',
+            dataIndex: 'item',
           },
 
           {
             title: 'Action',
-            dataIndex: 'discountedPrice',
+            dataIndex: 'action',
           },
         ]}
-        loading={loading}
+        loading={isLoading}
         dataSource={dataSource}
         pagination={false}
       />

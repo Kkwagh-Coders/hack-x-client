@@ -91,3 +91,22 @@ export const getInventoryLog = (pageNumber: number) => {
     .get<ResponseType>(url.href, { withCredentials: true })
     .then((res) => res.data.data);
 };
+
+export const getInventoryLogDashboard = () => {
+  const pageNumber = 1;
+  const limit = 5;
+
+  const url = new URL(`${BASE_API_URL}/item/logs`);
+  url.searchParams.set('page', pageNumber.toString());
+  url.searchParams.set('limit', limit.toString());
+
+  type ResponseType = {
+    message: string;
+    data: InventoryLog[];
+    page: { previousPage: number; nextPage: number };
+  };
+
+  return axios
+    .get<ResponseType>(url.href, { withCredentials: true })
+    .then((res) => res.data.data);
+};
