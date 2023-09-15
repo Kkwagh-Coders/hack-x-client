@@ -3,11 +3,11 @@ import { AiOutlineHome } from 'react-icons/ai';
 import { BiLogOut } from 'react-icons/bi';
 import { FiMenu, FiUsers } from 'react-icons/fi';
 import { GoLog } from 'react-icons/go';
-import { IoMdNotificationsOutline } from 'react-icons/io';
 import { MdOutlineInventory, MdOutlineSpaceDashboard } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import CustomSidebarLink from '../CustomSidebarLink/CustomSidebarLink';
 import LogoutButton from '../LogoutButton/LogoutButton';
+import Notification from '../Notification/Notification';
 import styles from './SideNavbar.module.css';
 
 const navBarLinks = [
@@ -31,11 +31,6 @@ const navBarLinks = [
     Icon: GoLog,
     link: '/dashboard/log',
   },
-  {
-    title: 'Alerts',
-    Icon: IoMdNotificationsOutline,
-    link: '/dashboard/alert',
-  },
 ];
 
 function SideNavbar() {
@@ -57,13 +52,13 @@ function SideNavbar() {
         }`}
       >
         <div className={styles.logo}>
-          <div>
+          <div className={styles.logoContainer}>
             <FiMenu className={styles.menuIcon} onClick={toggleSidebar} />
             <Link to="/dashboard">
               <span className={styles.logoName}>Hack X</span>
             </Link>
 
-            <IoMdNotificationsOutline />
+            <Notification />
           </div>
         </div>
 

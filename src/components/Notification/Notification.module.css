@@ -1,0 +1,49 @@
+.Notification {
+  position: relative;
+}
+
+.logo {
+  font-size: 2rem;
+  cursor: pointer;
+
+  position: relative;
+}
+
+.NotificationList {
+  position: absolute;
+  width: 400px;
+  height: min(800px, 40vh);
+
+  box-shadow: 0 12px 24px 2px rgb(129 146 179 / 8%);
+
+  left: -100%;
+  bottom: 0;
+
+  left: -400px;
+  bottom: max(-800px, -40vh);
+
+  padding: 1rem;
+
+  border: 1px solid grey;
+  background-color: white;
+  border-radius: 0.25rem;
+}
+
+.dot {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  background: rgb(219, 36, 36);
+  border-radius: 50%;
+  width: 20px;
+  font-size: 13px;
+  height: 20px;
+  text-align: center;
+
+  color: white;
+}
+
+.notViewed {
+  background-color: lightcoral;
+}
