@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { BiDetail, BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
+import InventoryLogViewModal from '../../components/InventoryLogViewModal/InventoryLogViewModal';
 import { getInventoryLog } from '../../services/inventory.services';
 import { InventoryLog as InventoryLogType } from '../../types/inventory.types';
-import InventoryLogViewModal from '../InventoryLogViewModal/InventoryLogViewModal';
 import styles from './InventoryLog.module.css';
 
 const userTableHeader = [

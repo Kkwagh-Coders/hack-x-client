@@ -1,11 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
-import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
+import {
+  BiSolidAddToQueue,
+  BiSolidDownArrow,
+  BiSolidUpArrow,
+} from 'react-icons/bi';
+import AddUserModal from '../../components/AddUserModal/AddUserModal';
+import TableBodySkeleton from '../../components/TableBodySkeleton/TableBodySkeleton';
+import UserDeleteModal from '../../components/UserDeleteModal/UserDeleteModal';
+import UserEditModal from '../../components/UserEditModal/UserEditModal';
 import { getUsers } from '../../services/user.services';
 import { User } from '../../types/user.types';
-import UserDeleteModal from '../UserDeleteModal/UserDeleteModal';
-import UserEditModal from '../UserEditModal/UserEditModal';
 import styles from './UserTable.module.css';
 
 const userTableHeader = [
@@ -25,6 +31,8 @@ function UserTable() {
 
   const [userForEdit, setUserForEdit] = useState<User | null>(null);
   const [userForDelete, setUserForDelete] = useState<User | null>(null);
+
+  const [userAddModal, setUserAddModal] = useState(false);
 
   const { data: userTableData, isLoading } = useQuery(
     ['users', pageNumber, sortBy, search],
@@ -55,6 +63,11 @@ function UserTable() {
         />
       ) : null}
 
+      {/* Add User */}
+      {userAddModal ? (
+        <AddUserModal closeModalCallback={() => setUserAddModal(false)} />
+      ) : null}
+
       {/* User Table */}
       <div className={styles.UserTable}>
         <h1>User Table</h1>
@@ -70,6 +83,16 @@ function UserTable() {
                 placeholder="Search..."
               />
             </div>
+
+            <button
+              type="button"
+              className={styles.addButton}
+              onClick={() => setUserAddModal(true)}
+            >
+              Create User
+              <BiSolidAddToQueue />
+            </button>
+
             <tr>
               {userTableHeader.map((column) => (
                 <th
@@ -94,8 +117,8 @@ function UserTable() {
           <tbody className={styles.tableBody}>
             {userTableData?.map((user) => {
               let roleClass = '';
-              if (user.role === 'Admin') roleClass = styles.adminRole;
-              else if (user.role === 'Staff') roleClass = styles.staffRole;
+              if (user.role === 'admin') roleClass = styles.adminRole;
+              else if (user.role === 'staff') roleClass = styles.staffRole;
               else roleClass = styles.teacherRole;
 
               return (
@@ -122,11 +145,13 @@ function UserTable() {
                 </tr>
               );
             })}
+
+            {/* Show loading text */}
+            {isLoading || true ? (
+              <TableBodySkeleton columnCount={userTableHeader.length} />
+            ) : null}
           </tbody>
         </table>
-
-        {/* Show loading text */}
-        {isLoading ? <p>Loading...</p> : null}
 
         <div className={styles.pageButtons}>
           <button

@@ -25,7 +25,24 @@
 }
 
 .tableHeader {
+  position: relative;
   box-shadow: 0 5px 10px #e1e5ee;
+}
+
+.addButton {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+
+  background-color: #33b133;
+  color: white;
 }
 
 .tableHeadCell {

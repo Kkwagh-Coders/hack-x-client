@@ -13,7 +13,16 @@ export type Item = {
   expiry: string;
 };
 
-type ActionType = 'Update';
+export type ItemCreateForm = {
+  name: string;
+  description: string;
+  quantity: number;
+  location: string;
+  category: string;
+  expiry: string;
+};
+
+type ActionType = 'created' | 'updated' | 'deleted';
 
 export type InventoryLog = {
   logId: string;

@@ -1,12 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
-import { BiDetail, BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
+import {
+  BiDetail,
+  BiSolidAddToQueue,
+  BiSolidDownArrow,
+  BiSolidUpArrow,
+} from 'react-icons/bi';
+import AddInventoryItemModal from '../../components/AddInventoryItemModal/AddInventoryItemModal';
+import InventoryDeleteModal from '../../components/InventoryDeleteModal/InventoryDeleteModal';
+import InventoryEditModal from '../../components/InventoryEditModal/InventoryEditModal';
+import InventoryViewModal from '../../components/InventoryViewModal/InventoryViewModal';
 import { getInventory } from '../../services/inventory.services';
 import { Item } from '../../types/inventory.types';
-import InventoryDeleteModal from '../InventoryDeleteModal/InventoryDeleteModal';
-import InventoryEditModal from '../InventoryEditModal/InventoryEditModal';
-import InventoryViewModal from '../InventoryViewModal/InventoryViewModal';
 import styles from './Inventory.module.css';
 
 const userTableHeader = [
@@ -30,6 +36,8 @@ function Inventory() {
   const [inventoryForDelete, setInventoryForDelete] = useState<Item | null>(
     null,
   );
+
+  const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
 
   const { data: inventoryTableData, isLoading } = useQuery(
     ['inventory', pageNumber, sortBy, search],
@@ -68,6 +76,13 @@ function Inventory() {
         />
       ) : null}
 
+      {/* Add Item */}
+      {isAddItemModalOpen ? (
+        <AddInventoryItemModal
+          closeModalCallback={() => setIsAddItemModalOpen(false)}
+        />
+      ) : null}
+
       {/* Inventory Table */}
       <div className={styles.Inventory}>
         <h1>Inventory</h1>
@@ -83,6 +98,16 @@ function Inventory() {
                 placeholder="Search..."
               />
             </div>
+
+            <button
+              type="button"
+              className={styles.addButton}
+              onClick={() => setIsAddItemModalOpen(true)}
+            >
+              Add Item
+              <BiSolidAddToQueue />
+            </button>
+
             <tr>
               {userTableHeader.map((column) => (
                 <th

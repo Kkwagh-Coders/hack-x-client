@@ -1,4 +1,4 @@
-import { InventoryLog, Item } from '../types/inventory.types';
+import { InventoryLog, Item, ItemCreateForm } from '../types/inventory.types';
 import { User } from '../types/user.types';
 import fakeRequest from './fakeRequest';
 import { BASE_API_URL } from './serverConfig';
@@ -60,7 +60,7 @@ const logItems: InventoryLog[] = [
       expiry: 'name',
     },
     createdAt: 'name',
-    action: 'Update',
+    action: 'updated',
   },
 ];
 
@@ -99,6 +99,19 @@ export const editItem = (item: Item) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (response: any) => response.data.message,
   ) as Promise<string>;
+};
+
+export const createItem = (item: ItemCreateForm) => {
+  console.log('Item');
+  console.log(item);
+
+  const url = `${BASE_API_URL}/item/status`;
+  return fakeRequest({ url }, { message: 'Created' }, false).then(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (response: any) => {
+      return { message: response.data.message };
+    },
+  ) as Promise<{ message: string }>;
 };
 
 export const getInventoryLog = (

@@ -1,4 +1,5 @@
-import { User } from '../types/user.types';
+import axios from 'axios';
+import { User, UserCreateForm } from '../types/user.types';
 import fakeRequest from './fakeRequest';
 import { BASE_API_URL } from './serverConfig';
 
@@ -12,7 +13,7 @@ const users: User[] = [
     email: 'user1',
     designation: 'user1',
     department: 'user1',
-    role: 'Admin',
+    role: 'admin',
   },
   {
     userId: 'user2',
@@ -22,7 +23,7 @@ const users: User[] = [
     email: 'user2',
     designation: 'user2',
     department: 'user2',
-    role: 'Teacher',
+    role: 'teacher',
   },
   {
     userId: 'user3',
@@ -32,7 +33,7 @@ const users: User[] = [
     email: 'user3',
     designation: 'user3',
     department: 'user3',
-    role: 'Staff',
+    role: 'staff',
   },
 ];
 
@@ -71,4 +72,11 @@ export const editUser = (user: User) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (response: any) => response.data.message,
   ) as Promise<string>;
+};
+
+export const createUser = (user: UserCreateForm) => {
+  const url = `${BASE_API_URL}/user/register`;
+  return axios
+    .post<{ message: string }>(url, user, { withCredentials: true })
+    .then((response) => response.data);
 };

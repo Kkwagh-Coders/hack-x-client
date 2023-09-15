@@ -26,6 +26,7 @@ function Router() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  // TODO: loading
   if (isLoading) return <Loading />;
   if (isError) return <Error />;
 
