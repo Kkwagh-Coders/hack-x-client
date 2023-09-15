@@ -34,9 +34,12 @@ function UserTable() {
 
   const [userAddModal, setUserAddModal] = useState(false);
 
-  const { data: userTableData, isLoading } = useQuery(
-    ['users', pageNumber, sortBy, search],
-    () => getUsers(pageNumber, search, sortBy),
+  const {
+    data: userTableData,
+    isLoading,
+    isFetching,
+  } = useQuery(['users', pageNumber, sortBy, search], () =>
+    getUsers(pageNumber, search, sortBy),
   );
 
   const handleSortByFilter = (columnName: string | null) => {
@@ -147,7 +150,7 @@ function UserTable() {
             })}
 
             {/* Show loading text */}
-            {isLoading ? (
+            {isLoading || isFetching ? (
               <TableBodySkeleton columnCount={userTableHeader.length} />
             ) : null}
           </tbody>

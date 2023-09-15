@@ -2,11 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { BiDetail } from 'react-icons/bi';
 import InventoryLogViewModal from '../../components/InventoryLogViewModal/InventoryLogViewModal';
+import TableBodySkeleton from '../../components/TableBodySkeleton/TableBodySkeleton';
 import { getInventoryLog } from '../../services/inventory.services';
 import { InventoryLog as InventoryLogType } from '../../types/inventory.types';
 import styles from './InventoryLog.module.css';
 
-const userTableHeader = [
+const inventoryLogTableHeader = [
   { title: 'By', name: 'userId.firstName' },
   { title: 'Email', name: 'userId.email' },
   { title: 'Created At', name: 'createdAt' },
@@ -20,9 +21,12 @@ function InventoryLog() {
   const [inventoryLogForView, setInventoryLogForView] =
     useState<InventoryLogType | null>(null);
 
-  const { data: logTableData, isLoading } = useQuery(
-    ['inventory-log', pageNumber],
-    () => getInventoryLog(pageNumber),
+  const {
+    data: logTableData,
+    isLoading,
+    isFetching,
+  } = useQuery(['inventory-log', pageNumber], () =>
+    getInventoryLog(pageNumber),
   );
 
   return (
@@ -42,7 +46,7 @@ function InventoryLog() {
         <table className={styles.table}>
           <thead className={styles.tableHeader}>
             <tr>
-              {userTableHeader.map((column) => (
+              {inventoryLogTableHeader.map((column) => (
                 <th key={column.title} className={styles.tableHeadCell}>
                   <div className={styles.cellItem}>{column.title}</div>
                 </th>
@@ -70,11 +74,12 @@ function InventoryLog() {
                 </tr>
               );
             })}
+
+            {isLoading || isFetching ? (
+              <TableBodySkeleton columnCount={inventoryLogTableHeader.length} />
+            ) : null}
           </tbody>
         </table>
-
-        {/* Show loading text */}
-        {isLoading ? <p>Loading...</p> : null}
 
         <div className={styles.pageButtons}>
           <button

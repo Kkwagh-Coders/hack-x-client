@@ -11,6 +11,7 @@ import AddInventoryItemModal from '../../components/AddInventoryItemModal/AddInv
 import InventoryDeleteModal from '../../components/InventoryDeleteModal/InventoryDeleteModal';
 import InventoryEditModal from '../../components/InventoryEditModal/InventoryEditModal';
 import InventoryViewModal from '../../components/InventoryViewModal/InventoryViewModal';
+import TableBodySkeleton from '../../components/TableBodySkeleton/TableBodySkeleton';
 import { getInventory } from '../../services/inventory.services';
 import { Item } from '../../types/inventory.types';
 import getFormattedDate, {
@@ -18,7 +19,7 @@ import getFormattedDate, {
 } from '../../utils/getFormattedDate';
 import styles from './Inventory.module.css';
 
-const userTableHeader = [
+const inventoryTableHeader = [
   { title: 'name', name: 'name' },
   { title: 'location', name: 'location' },
   { title: 'category', name: 'category' },
@@ -42,9 +43,12 @@ function Inventory() {
 
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
 
-  const { data: inventoryTableData, isLoading } = useQuery(
-    ['inventory', pageNumber, sortBy, search],
-    () => getInventory(pageNumber, search, sortBy),
+  const {
+    data: inventoryTableData,
+    isLoading,
+    isFetching,
+  } = useQuery(['inventory', pageNumber, sortBy, search], () =>
+    getInventory(pageNumber, search, sortBy),
   );
 
   const handleSortByFilter = (columnName: string | null) => {
@@ -112,7 +116,7 @@ function Inventory() {
             </button>
 
             <tr>
-              {userTableHeader.map((column) => (
+              {inventoryTableHeader.map((column) => (
                 <th
                   key={column.title}
                   onClick={() => handleSortByFilter(column.name)}
@@ -173,11 +177,11 @@ function Inventory() {
                 </tr>
               );
             })}
+            {isLoading || isFetching ? (
+              <TableBodySkeleton columnCount={inventoryTableHeader.length} />
+            ) : null}
           </tbody>
         </table>
-
-        {/* Show loading text */}
-        {isLoading ? <p>Loading...</p> : null}
 
         <div className={styles.pageButtons}>
           <button

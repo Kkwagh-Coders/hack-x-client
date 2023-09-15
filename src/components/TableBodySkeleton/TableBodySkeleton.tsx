@@ -75,6 +75,13 @@ function TableBodySkeleton({ columnCount }: Props) {
           </td>
         ))}
       </tr>
+      <tr>
+        {rowElements.map((i) => (
+          <td key={i}>
+            <p className={`${styles.postTitle} ${styles.postSkeleton}`}> </p>
+          </td>
+        ))}
+      </tr>
     </>
   );
 }
