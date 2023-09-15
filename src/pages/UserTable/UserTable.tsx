@@ -122,7 +122,7 @@ function UserTable() {
               else roleClass = styles.teacherRole;
 
               return (
-                <tr key={user.userId}>
+                <tr key={user._id}>
                   <td>{`${user.firstName} ${user.middleName} ${user.lastName}`}</td>
                   <td>{user.email}</td>
                   <td>{user.designation}</td>
@@ -147,7 +147,7 @@ function UserTable() {
             })}
 
             {/* Show loading text */}
-            {isLoading || true ? (
+            {isLoading ? (
               <TableBodySkeleton columnCount={userTableHeader.length} />
             ) : null}
           </tbody>

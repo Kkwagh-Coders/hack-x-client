@@ -35,7 +35,6 @@ export type ItemEditForm = {
 type ActionType = 'created' | 'updated' | 'deleted';
 
 export type InventoryLog = {
-  logId: string;
   _id: string;
   user: User;
   oldItem: Item;

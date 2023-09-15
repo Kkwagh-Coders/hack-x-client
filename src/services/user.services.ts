@@ -3,64 +3,35 @@ import { User, UserCreateForm } from '../types/user.types';
 import fakeRequest from './fakeRequest';
 import { BASE_API_URL } from './serverConfig';
 
-// TODO: Routes
-const users: User[] = [
-  {
-    _id: 'user1',
-    firstName: 'user1',
-    middleName: 'user1',
-    lastName: 'user1',
-    email: 'user1',
-    designation: 'user1',
-    department: 'user1',
-    role: 'admin',
-  },
-  {
-    _id: 'user2',
-    firstName: 'user2',
-    middleName: 'user2',
-    lastName: 'user2',
-    email: 'user2',
-    designation: 'user2',
-    department: 'user2',
-    role: 'teacher',
-  },
-  {
-    _id: 'user3',
-    firstName: 'user3',
-    middleName: 'user3',
-    lastName: 'user3',
-    email: 'user3',
-    designation: 'user3',
-    department: 'user3',
-    role: 'staff',
-  },
-];
-
 export const getUsers = (
   pageNumber: number,
   search: string,
   sortBy: string | null,
 ) => {
-  console.log('User');
-  console.log(sortBy, search, pageNumber);
+  const limit = 10;
+  let sort = 'name';
+  let type = 1;
+  if (sortBy) {
+    sort = sortBy[0] === '-' ? sortBy?.substring(1) : sortBy;
+    type = sortBy[0] === '-' ? -1 : 1;
+  }
 
-  const url = `${BASE_API_URL}/user/status`;
-  return fakeRequest({ url }, { users }, false).then(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (response: any) => response.data.users,
-  ) as Promise<User[]>;
-};
+  const url = new URL(`${BASE_API_URL}/user/all`);
+  url.searchParams.set('search', search);
+  url.searchParams.set('page', pageNumber.toString());
+  url.searchParams.set('limit', limit.toString());
+  url.searchParams.set('sortBy', sort);
+  url.searchParams.set('type', type.toString());
 
-export const deleteUser = (userId: string) => {
-  console.log('User');
-  console.log(userId);
+  type ResponseType = {
+    message: string;
+    data: User[];
+    page: { previousPage: number; nextPage: number };
+  };
 
-  const url = `${BASE_API_URL}/user/status`;
-  return fakeRequest({ url }, { message: 'Deleted' }, false).then(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (response: any) => response.data.message,
-  ) as Promise<string>;
+  return axios
+    .get<ResponseType>(url.href, { withCredentials: true })
+    .then((res) => res.data.data);
 };
 
 export const editUser = (user: User) => {
@@ -79,4 +50,15 @@ export const createUser = (user: UserCreateForm) => {
   return axios
     .post<{ message: string }>(url, user, { withCredentials: true })
     .then((response) => response.data);
+};
+
+export const deleteUser = (userId: string) => {
+  console.log('User');
+  console.log(userId);
+
+  const url = `${BASE_API_URL}/user/status`;
+  return fakeRequest({ url }, { message: 'Deleted' }, false).then(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (response: any) => response.data.message,
+  ) as Promise<string>;
 };
