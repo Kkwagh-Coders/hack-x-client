@@ -53,12 +53,8 @@ export const createUser = (user: UserCreateForm) => {
 };
 
 export const deleteUser = (userId: string) => {
-  console.log('User');
-  console.log(userId);
-
-  const url = `${BASE_API_URL}/user/status`;
-  return fakeRequest({ url }, { message: 'Deleted' }, false).then(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (response: any) => response.data.message,
-  ) as Promise<string>;
+  const url = `${BASE_API_URL}/user/${userId}`;
+  return axios
+    .delete<{ message: string }>(url, { withCredentials: true })
+    .then((response) => response.data.message);
 };

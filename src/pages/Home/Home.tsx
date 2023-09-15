@@ -25,7 +25,7 @@ function Home() {
           <div className={styles.heroActionButtons}>
             <LoginRequiredLink
               textContent="Dashboard"
-              to="/post"
+              to="/dashboard"
               className={`default-button ${styles.exploreButton}`}
             />
           </div>
