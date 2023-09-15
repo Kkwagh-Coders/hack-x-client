@@ -34,7 +34,8 @@ function AddInventoryItemModal({
       toast.error(error.response.data.message);
     },
     onSuccess: (data) => {
-      toast.success(data.message);
+      toast.success(data.message || 'Item Added to Inventory');
+      closeModalCallback();
     },
   });
 

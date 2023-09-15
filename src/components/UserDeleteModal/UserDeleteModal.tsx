@@ -18,7 +18,7 @@ function UserDeleteModal({ user, closeModalCallback }: UserDeleteModalProps) {
     setIsLoading(true);
 
     try {
-      const message = await deleteUser(user.userId);
+      const message = await deleteUser(user._id);
       toast.success(message);
       setIsLoading(false);
       closeModalCallback();

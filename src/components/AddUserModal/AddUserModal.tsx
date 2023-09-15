@@ -33,6 +33,7 @@ function AddUserModal({ closeModalCallback }: AddUserModalProps) {
     },
     onSuccess: (data) => {
       toast.success(data.message);
+      closeModalCallback();
     },
   });
 

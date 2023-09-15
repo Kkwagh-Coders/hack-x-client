@@ -6,7 +6,7 @@ import { BASE_API_URL } from './serverConfig';
 // TODO: Routes
 const users: User[] = [
   {
-    userId: 'user1',
+    _id: 'user1',
     firstName: 'user1',
     middleName: 'user1',
     lastName: 'user1',
@@ -16,7 +16,7 @@ const users: User[] = [
     role: 'admin',
   },
   {
-    userId: 'user2',
+    _id: 'user2',
     firstName: 'user2',
     middleName: 'user2',
     lastName: 'user2',
@@ -26,7 +26,7 @@ const users: User[] = [
     role: 'teacher',
   },
   {
-    userId: 'user3',
+    _id: 'user3',
     firstName: 'user3',
     middleName: 'user3',
     lastName: 'user3',

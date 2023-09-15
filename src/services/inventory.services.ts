@@ -1,18 +1,24 @@
-import { InventoryLog, Item, ItemCreateForm } from '../types/inventory.types';
+import axios from 'axios';
+import {
+  InventoryLog,
+  Item,
+  ItemCreateForm,
+  ItemEditForm,
+} from '../types/inventory.types';
 import { User } from '../types/user.types';
 import fakeRequest from './fakeRequest';
 import { BASE_API_URL } from './serverConfig';
 
 // TODO: Routes
 const user: User = {
-  userId: 'user2',
+  _id: 'user2',
   firstName: 'user2',
   middleName: 'user2',
   lastName: 'user2',
   email: 'user2',
   designation: 'user2',
   department: 'user2',
-  role: 'Teacher',
+  role: 'teacher',
 };
 
 const items: Item[] = [
@@ -33,7 +39,7 @@ const items: Item[] = [
 const logItems: InventoryLog[] = [
   {
     logId: 'k',
-    userId: 'name',
+    _id: 'name',
     user,
     oldItem: {
       itemId: 'name',
@@ -69,49 +75,69 @@ export const getInventory = (
   search: string,
   sortBy: string | null,
 ) => {
-  console.log('Item');
-  console.log(sortBy, search, pageNumber);
+  const limit = 10;
+  let sort = 'name';
+  let type = 1;
+  if (sortBy) {
+    sort = sortBy[0] === '-' ? sortBy?.substring(1) : sortBy;
+    type = sortBy[0] === '-' ? -1 : 1;
+  }
 
-  const url = `${BASE_API_URL}/user/status`;
-  return fakeRequest({ url }, { items }, false).then(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (response: any) => response.data.items,
-  ) as Promise<Item[]>;
+  const url = new URL(`${BASE_API_URL}/item`);
+  url.searchParams.set('search', search);
+  url.searchParams.set('page', pageNumber.toString());
+  url.searchParams.set('limit', limit.toString());
+  url.searchParams.set('sortBy', sort);
+  url.searchParams.set('type', type.toString());
+
+  type ResponseType = {
+    message: string;
+    data: Item[];
+    page: { previousPage: number; nextPage: number };
+  };
+
+  return axios
+    .get<ResponseType>(url.href, { withCredentials: true })
+    .then((res) => res.data.data);
 };
 
 export const deleteItem = (itemId: string) => {
-  console.log('Item');
-  console.log(itemId);
-
-  const url = `${BASE_API_URL}/user/status`;
-  return fakeRequest({ url }, { message: 'Deleted' }, false).then(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (response: any) => response.data.message,
-  ) as Promise<string>;
+  const url = `${BASE_API_URL}/item`;
+  return axios
+    .delete<{ message: string }>(url, {
+      data: { itemId },
+      withCredentials: true,
+    })
+    .then((response) => response.data.message);
 };
 
-export const editItem = (item: Item) => {
+export const editItem = (itemId: string, item: ItemEditForm) => {
   console.log('Item');
-  console.log(item);
+  console.log(item, itemId);
 
-  const url = `${BASE_API_URL}/item/status`;
-  return fakeRequest({ url }, { message: 'Edited' }, false).then(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (response: any) => response.data.message,
-  ) as Promise<string>;
+  const url = `${BASE_API_URL}/item`;
+  return axios
+    .put<{ message: string }>(
+      url,
+      { ...item, itemId },
+      { withCredentials: true },
+    )
+    .then((response) => response.data);
 };
 
 export const createItem = (item: ItemCreateForm) => {
-  console.log('Item');
-  console.log(item);
+  const url = `${BASE_API_URL}/item`;
 
-  const url = `${BASE_API_URL}/item/status`;
-  return fakeRequest({ url }, { message: 'Created' }, false).then(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (response: any) => {
-      return { message: response.data.message };
-    },
-  ) as Promise<{ message: string }>;
+  const data = {
+    ...item,
+    working: item.quantity,
+    notWorking: 0,
+    quantity: undefined,
+  };
+
+  return axios
+    .post<{ message: string }>(url, data, { withCredentials: true })
+    .then((response) => response.data);
 };
 
 export const getInventoryLog = (

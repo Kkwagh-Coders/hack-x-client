@@ -1,7 +1,7 @@
 import { User } from './user.types';
 
 export type Item = {
-  itemId: string;
+  _id: string;
   name: string;
   description: string;
   working: number;
@@ -22,11 +22,21 @@ export type ItemCreateForm = {
   expiry: string;
 };
 
+export type ItemEditForm = {
+  name: string;
+  description: string;
+  working: number;
+  notWorking: number;
+  location: string;
+  category: string;
+  expiry: string;
+};
+
 type ActionType = 'created' | 'updated' | 'deleted';
 
 export type InventoryLog = {
   logId: string;
-  userId: string;
+  _id: string;
   user: User;
   oldItem: Item;
   newItem: Item;

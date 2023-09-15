@@ -55,9 +55,7 @@ function Login() {
       email: Yup.string()
         .email('Invalid Email Address')
         .required('Email is Required'),
-      password: Yup.string()
-        .max(20, 'Password must be 20 characters of less')
-        .required('Password is Required'),
+      password: Yup.string().required('Password is Required'),
     }),
     onSubmit: (values) => mutate(values),
   });

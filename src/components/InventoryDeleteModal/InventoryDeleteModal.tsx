@@ -21,7 +21,7 @@ function InventoryDeleteModal({
     setIsLoading(true);
 
     try {
-      const message = await deleteItem(item.itemId);
+      const message = await deleteItem(item._id);
       toast.success(message);
       setIsLoading(false);
       closeModalCallback();
