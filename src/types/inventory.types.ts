@@ -23,13 +23,7 @@ export type ItemCreateForm = {
 };
 
 export type ItemEditForm = {
-  name: string;
-  description: string;
-  working: number;
   notWorking: number;
-  location: string;
-  category: string;
-  expiry: string;
 };
 
 type ActionType = 'created' | 'updated' | 'deleted';

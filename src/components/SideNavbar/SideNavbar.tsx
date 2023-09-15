@@ -56,10 +56,14 @@ function SideNavbar() {
         }`}
       >
         <div className={styles.logo}>
-          <FiMenu className={styles.menuIcon} onClick={toggleSidebar} />
-          <Link to="/dashboard">
-            <span className={styles.logoName}>Hack X</span>
-          </Link>
+          <div>
+            <FiMenu className={styles.menuIcon} onClick={toggleSidebar} />
+            <Link to="/dashboard">
+              <span className={styles.logoName}>Hack X</span>
+            </Link>
+
+            <IoMdNotificationsOutline />
+          </div>
         </div>
 
         <div className={styles.sidebar}>

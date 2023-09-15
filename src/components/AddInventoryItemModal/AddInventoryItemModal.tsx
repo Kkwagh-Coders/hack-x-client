@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
+import { categories } from '../../data/inventory.data';
 import { createItem } from '../../services/inventory.services';
 import { ItemCreateForm } from '../../types/inventory.types';
 import styles from './AddInventoryItemModal.module.css';
@@ -17,8 +18,6 @@ interface ErrorResponse<T> {
 type AddInventoryItemModalProps = {
   closeModalCallback: () => void;
 };
-
-const categories = ['Software', 'Hardware', 'Electronics', 'Furniture'];
 
 function AddInventoryItemModal({
   closeModalCallback,
@@ -159,8 +158,7 @@ function AddInventoryItemModal({
             <label htmlFor="category">
               {formik.touched.category && formik.errors.category
                 ? formik.errors.category
-                : 'Branch'}
-              <span className="required">*</span>
+                : 'Category'}
 
               <select
                 name="category"

@@ -65,7 +65,7 @@ export const createItem = (item: ItemCreateForm) => {
   const data = {
     ...item,
     working: item.quantity,
-    notWorking: 0,
+    notWorking: item.quantity,
     quantity: undefined,
   };
 

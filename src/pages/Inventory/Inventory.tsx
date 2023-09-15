@@ -13,14 +13,17 @@ import InventoryEditModal from '../../components/InventoryEditModal/InventoryEdi
 import InventoryViewModal from '../../components/InventoryViewModal/InventoryViewModal';
 import { getInventory } from '../../services/inventory.services';
 import { Item } from '../../types/inventory.types';
+import getFormattedDate, {
+  getNormalFormattedDate,
+} from '../../utils/getFormattedDate';
 import styles from './Inventory.module.css';
 
 const userTableHeader = [
   { title: 'name', name: 'name' },
   { title: 'location', name: 'location' },
   { title: 'category', name: 'category' },
-  { title: 'working', name: 'working' },
-  { title: 'Faulty', name: 'notWorking' },
+  { title: 'Quantity', name: 'notWorking' },
+  { title: 'Expiry', name: 'expiry' },
   { title: 'View', name: null },
   { title: 'Edit', name: null },
   { title: 'Delete', name: null },
@@ -28,7 +31,7 @@ const userTableHeader = [
 
 function Inventory() {
   const [search, setSearch] = useState('');
-  const [sortBy, setSortBy] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<string | null>('expiry');
   const [pageNumber, setPageNumber] = useState(1);
 
   const [inventoryForEdit, setInventoryForEdit] = useState<Item | null>(null);
@@ -132,12 +135,21 @@ function Inventory() {
           <tbody className={styles.tableBody}>
             {inventoryTableData?.map((item) => {
               return (
-                <tr key={item.itemId}>
+                <tr key={item._id}>
                   <td>{item.name}</td>
                   <td>{item.location}</td>
                   <td>{item.category}</td>
-                  <td>{item.working}</td>
                   <td>{item.notWorking}</td>
+                  <td
+                    className={
+                      new Date(getFormattedDate(item.expiry)).getTime() <
+                      new Date().getTime()
+                        ? styles.expired
+                        : ''
+                    }
+                  >
+                    {getNormalFormattedDate(item.expiry)}
+                  </td>
 
                   <td className={styles.actionCell}>
                     <BiDetail

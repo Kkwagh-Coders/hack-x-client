@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import ResetPassword from '../components/ResetPassword/ResetPassword';
 import useUserStatus from '../hooks/useUserStatus';
-import Alerts from '../pages/Alerts/Alerts';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import DashboardLayout from '../pages/DashboardLayout/DashboardLayout';
 import DefaultLayout from '../pages/DefaultLayout';
@@ -44,7 +43,6 @@ function Router() {
         <Route path="inventory" element={<Inventory />} />
         <Route path="users" element={<UserTable />} />
         <Route path="log" element={<InventoryLog />} />
-        <Route path="alert" element={<Alerts />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

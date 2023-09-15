@@ -132,3 +132,7 @@
 .pageNumber {
   font-weight: 500;
 }
+
+.expired {
+  color: red;
+}
