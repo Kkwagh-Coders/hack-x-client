@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { AiOutlineMessage } from 'react-icons/ai';
 import { FiAlertCircle } from 'react-icons/fi';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { useAppSelector } from '../../redux/store';
@@ -21,7 +22,17 @@ function NotificationList() {
             key={`${notification.text}#${notification.createdAt}`}
             className={styles.notificationCard}
           >
-            <FiAlertCircle className={styles.notificationIcon} />
+            {notification.type === 'low-inventory' ? (
+              <FiAlertCircle className={styles.notificationIcon} />
+            ) : (
+              <AiOutlineMessage
+                className={styles.notificationIcon}
+                style={{
+                  color: '#3c8aa3',
+                }}
+              />
+            )}
+
             <div className={styles.notificationContent}>
               <p className={styles.notificationText}>{notification.text}</p>
               <p className={styles.notificationCreatedAt}>
