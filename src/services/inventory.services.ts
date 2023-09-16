@@ -94,7 +94,7 @@ export const getInventoryLog = (pageNumber: number) => {
 
 export const getInventoryLogDashboard = () => {
   const pageNumber = 1;
-  const limit = 5;
+  const limit = 4;
 
   const url = new URL(`${BASE_API_URL}/item/logs`);
   url.searchParams.set('page', pageNumber.toString());

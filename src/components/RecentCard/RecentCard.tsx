@@ -38,6 +38,18 @@ function RecentCard() {
           {
             title: 'Action',
             dataIndex: 'action',
+            render: (text, record) => {
+              let actionClass = '';
+              if (record.action === 'created')
+                actionClass = styles.createdAction;
+              else if (record.action === 'updated')
+                actionClass = styles.updatedAction;
+              else actionClass = styles.deletedAction;
+
+              return (
+                <p className={`${styles.action} ${actionClass}`}>{text}</p>
+              );
+            },
           },
         ]}
         loading={isLoading}

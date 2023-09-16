@@ -1,3 +1,29 @@
 .cardTitle {
   padding: 1rem;
 }
+
+.action {
+  border-radius: 0.2rem;
+  background-color: red;
+  padding: 0.5rem 1rem;
+  text-align: center;
+
+  text-transform: capitalize;
+
+  width: fit-content;
+}
+
+.deletedAction {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
+.updatedAction {
+  background-color: #fff0c2;
+  color: #a68b00;
+}
+
+.createdAction {
+  background-color: #c8e6c9;
+  color: #388e3c;
+}
