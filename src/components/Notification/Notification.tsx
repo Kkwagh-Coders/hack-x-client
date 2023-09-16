@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { IoMdNotificationsOutline } from 'react-icons/io';
+import { useAppSelector } from '../../redux/store';
 import {
   getNotifications,
   getUnreadNotification,
@@ -28,6 +29,8 @@ function NotificationList() {
 }
 
 function Notification() {
+  const role = useAppSelector((state) => state.userState.user?.role);
+
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const { data } = useQuery(
     ['unread-notification-count'],
@@ -37,6 +40,11 @@ function Notification() {
   const handleToggleNotification = () => {
     setIsNotificationOpen((state) => !state);
   };
+
+  if (!role || role === 'teacher') {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <></>;
+  }
 
   return (
     <div className={styles.Notification}>

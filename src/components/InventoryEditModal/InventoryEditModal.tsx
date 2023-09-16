@@ -37,7 +37,6 @@ function InventoryEditModal({
       },
       onSuccess: (data) => {
         queryClient.refetchQueries(['inventory']);
-        queryClient.refetchQueries(['notifications']);
         queryClient.refetchQueries(['unread-notification-count']);
 
         toast.success(data.message || 'Item Added to Inventory');
