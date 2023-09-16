@@ -12,6 +12,7 @@ import InventoryDeleteModal from '../../components/InventoryDeleteModal/Inventor
 import InventoryEditModal from '../../components/InventoryEditModal/InventoryEditModal';
 import InventoryViewModal from '../../components/InventoryViewModal/InventoryViewModal';
 import TableBodySkeleton from '../../components/TableBodySkeleton/TableBodySkeleton';
+import { useAppSelector } from '../../redux/store';
 import { getInventory } from '../../services/inventory.services';
 import { Item } from '../../types/inventory.types';
 import getDaysBetween from '../../utils/getDaysBetween';
@@ -20,7 +21,7 @@ import getFormattedDate, {
 } from '../../utils/getFormattedDate';
 import styles from './Inventory.module.css';
 
-const inventoryTableHeader = [
+const inventoryTableHeaderAdminAndStaff = [
   { title: 'name', name: 'name' },
   { title: 'location', name: 'location' },
   { title: 'category', name: 'category' },
@@ -30,6 +31,16 @@ const inventoryTableHeader = [
   { title: 'View', name: null },
   { title: 'Edit', name: null },
   { title: 'Delete', name: null },
+];
+
+const inventoryTableHeaderTeacher = [
+  { title: 'name', name: 'name' },
+  { title: 'location', name: 'location' },
+  { title: 'category', name: 'category' },
+  { title: 'Quantity', name: 'notWorking' },
+  { title: 'Expiry', name: 'expiry' },
+  { title: 'Expires In', name: null },
+  { title: 'View', name: null },
 ];
 
 function Inventory() {
@@ -44,6 +55,10 @@ function Inventory() {
   );
 
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
+  const role = useAppSelector((state) => state.userState.user?.role);
+
+  let inventoryTableHeader = inventoryTableHeaderAdminAndStaff;
+  if (role === 'teacher') inventoryTableHeader = inventoryTableHeaderTeacher;
 
   const {
     data: inventoryTableData,
@@ -180,18 +195,22 @@ function Inventory() {
                     />
                   </td>
 
-                  <td className={styles.actionCell}>
-                    <AiOutlineEdit
-                      className={styles.editButton}
-                      onClick={() => setInventoryForEdit(item)}
-                    />
-                  </td>
-                  <td className={styles.actionCell}>
-                    <AiOutlineDelete
-                      className={styles.deleteButton}
-                      onClick={() => setInventoryForDelete(item)}
-                    />
-                  </td>
+                  {role !== 'teacher' ? (
+                    <>
+                      <td className={styles.actionCell}>
+                        <AiOutlineEdit
+                          className={styles.editButton}
+                          onClick={() => setInventoryForEdit(item)}
+                        />
+                      </td>
+                      <td className={styles.actionCell}>
+                        <AiOutlineDelete
+                          className={styles.deleteButton}
+                          onClick={() => setInventoryForDelete(item)}
+                        />
+                      </td>
+                    </>
+                  ) : null}
                 </tr>
               );
             })}
