@@ -41,7 +41,7 @@ function InventoryLog() {
 
       {/* InventoryLog Table */}
       <div className={styles.InventoryLog}>
-        <h1>Inventory Log</h1>
+        <h1 className="title">Inventory Log</h1>
 
         <table className={styles.table}>
           <thead className={styles.tableHeader}>

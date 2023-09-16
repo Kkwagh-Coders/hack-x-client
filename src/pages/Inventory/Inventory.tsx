@@ -109,7 +109,7 @@ function Inventory() {
 
       {/* Inventory Table */}
       <div className={styles.Inventory}>
-        <h1>Inventory</h1>
+        <h1 className="title">Inventory</h1>
 
         <table className={styles.table}>
           <thead className={styles.tableHeader}>

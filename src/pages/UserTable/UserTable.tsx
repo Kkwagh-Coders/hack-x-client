@@ -73,7 +73,7 @@ function UserTable() {
 
       {/* User Table */}
       <div className={styles.UserTable}>
-        <h1>User Table</h1>
+        <h1 className="title">User Table</h1>
 
         <table className={styles.table}>
           <thead className={styles.tableHeader}>

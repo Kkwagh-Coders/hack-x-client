@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { FiAlertCircle } from 'react-icons/fi';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { useAppSelector } from '../../redux/store';
 import {
   getNotifications,
   getUnreadNotification,
 } from '../../services/notification';
+import { getNormalFormattedDate } from '../../utils/getFormattedDate';
 import styles from './Notification.module.css';
 
 function NotificationList() {
@@ -13,17 +15,21 @@ function NotificationList() {
 
   return (
     <div className={styles.NotificationList}>
-      <h3>Alerts</h3>
       <div>
         {data?.map((notification) => (
-          <p
-            key={notification.text}
-            className={
-              !notification.isViewed ? styles.notViewed : styles.isViewed
-            }
+          <div
+            key={`${notification.text}#${notification.createdAt}`}
+            className={styles.notificationCard}
           >
-            {notification.text}
-          </p>
+            <FiAlertCircle className={styles.notificationIcon} />
+            <div className={styles.notificationContent}>
+              <p className={styles.notificationText}>{notification.text}</p>
+              <p className={styles.notificationCreatedAt}>
+                {getNormalFormattedDate(notification.createdAt)}
+              </p>
+              <div className={styles.notificationLine}> </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
