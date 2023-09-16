@@ -21,6 +21,9 @@
   margin: 0 20px;
   padding: 2rem;
 }
+.content{
+  margin-bottom: 1rem;
+}
 
 .InventoryViewModal .title {
   text-align: left;

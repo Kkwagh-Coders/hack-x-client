@@ -1,50 +1,72 @@
-.Notification {
+ .Notification {
   position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+}
+
+h3{
+  margin-left:8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .logo {
   font-size: 2rem;
   cursor: pointer;
-
-  position: relative;
+  color: #333; /* Change the color of the icon */
+  margin-right: 10px; /* Add some spacing between icon and count */
 }
 
 .NotificationList {
   position: absolute;
-  width: 400px;
-  height: min(800px, 40vh);
-
-  box-shadow: 0 12px 24px 2px rgb(129 146 179 / 8%);
-
+  width: 500px; /* Adjust the width as needed */
+  max-height: 500px; /* Limit the maximum height for scrollability */
+  box-shadow: 0 12px 24px 2px #e1e5ee;
   left: -100%;
-  bottom: 0;
-
-  left: -400px;
-  bottom: max(-800px, -40vh);
-
-  padding: 1rem;
-
-  border: 1px solid grey;
+  left:-500px;
+  top: calc(100% + 10px); /* Position it below the notification icon */
+  padding: 4rem;
   background-color: white;
-  border-radius: 0.25rem;
-  overflow: scroll;
+  border-radius: 200px;
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
+  padding: 8px; /* Add padding to notifications for spacing */
+  margin-bottom: 8px; /* Add margin between notifications */
+  border-radius: 4px; /* Add rounded corners to notifications */
+  transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  border: 1px white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 .dot {
   position: absolute;
-  right: 0;
   top: 0;
+  right: -5px; /* Adjust the position */
   z-index: 100;
-  background: rgb(219, 36, 36);
+  background: #f00; /* Change the background color of the dot */
   border-radius: 50%;
   width: 20px;
-  font-size: 13px;
   height: 20px;
+  font-size: 13px;
   text-align: center;
-
-  color: white;
+  line-height: 20px; /* Center the text vertically */
+  color: white; /* Change the color of the text */
 }
 
 .notViewed {
-  background-color: lightcoral;
+  background-color: #ff6347; /* Change the background color of unread notifications */
+  color: white; /* Change the text color of unread notifications */
+  padding: 8px; /* Add padding to notifications for spacing */
+  margin: 12px; /* Add margin between notifications */
+  border-radius: 4px; /* Add rounded corners to notifications */
+  transition: background-color 0.3s ease; /* Smooth color transition on hover */
+} 
+ 
+.isViewed{
+  background-color: #e1e5ee;
+  color: solid black;
+  padding: 8px;
+  margin: 12px;
+  border-radius: 4px;
 }

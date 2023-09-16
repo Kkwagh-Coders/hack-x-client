@@ -18,7 +18,7 @@ function NotificationList() {
         {data?.map((notification) => (
           <p
             key={notification.text}
-            className={!notification.isViewed ? styles.notViewed : ''}
+            className={!notification.isViewed ? styles.notViewed : styles.isViewed}
           >
             {notification.text}
           </p>
