@@ -43,7 +43,7 @@ function Notification() {
 
   if (!role || role === 'teacher') {
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    return <></>;
+    return <div> </div>;
   }
 
   return (
