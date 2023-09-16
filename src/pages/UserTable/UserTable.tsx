@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import { AiOutlineDelete } from 'react-icons/ai';
 import {
   BiSolidAddToQueue,
   BiSolidDownArrow,
@@ -20,7 +20,6 @@ const userTableHeader = [
   { title: 'Designation', name: 'designation' },
   { title: 'Department', name: 'department' },
   { title: 'Role', name: 'role' },
-  { title: 'Edit', name: null },
   { title: 'Delete', name: null },
 ];
 
@@ -132,12 +131,6 @@ function UserTable() {
                   <td>{user.department}</td>
                   <td>
                     <p className={`${styles.role} ${roleClass}`}>{user.role}</p>
-                  </td>
-                  <td className={styles.actionCell}>
-                    <AiOutlineEdit
-                      className={styles.editButton}
-                      onClick={() => setUserForEdit(user)}
-                    />
                   </td>
                   <td className={styles.actionCell}>
                     <AiOutlineDelete
