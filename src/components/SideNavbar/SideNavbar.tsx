@@ -5,12 +5,13 @@ import { FiMenu, FiUsers } from 'react-icons/fi';
 import { GoLog } from 'react-icons/go';
 import { MdOutlineInventory, MdOutlineSpaceDashboard } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../redux/store';
 import CustomSidebarLink from '../CustomSidebarLink/CustomSidebarLink';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import Notification from '../Notification/Notification';
 import styles from './SideNavbar.module.css';
 
-const navBarLinks = [
+const navBarLinksAdmin = [
   {
     title: 'Dashboard',
     Icon: MdOutlineSpaceDashboard,
@@ -33,8 +34,22 @@ const navBarLinks = [
   },
 ];
 
+const navBarLinksStaffAndTeacher = [
+  {
+    title: 'Dashboard',
+    Icon: MdOutlineSpaceDashboard,
+    link: '/dashboard',
+  },
+  {
+    title: 'Inventory',
+    Icon: MdOutlineInventory,
+    link: '/dashboard/inventory',
+  },
+];
+
 function SideNavbar() {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const role = useAppSelector((state) => state.userState.user?.role);
 
   const toggleSidebar = () => {
     setIsSideBarOpen((state) => !state);
@@ -43,6 +58,9 @@ function SideNavbar() {
   const closeSideBar = () => {
     setIsSideBarOpen(false);
   };
+
+  let navBarLinks = navBarLinksStaffAndTeacher;
+  if (role === 'admin') navBarLinks = navBarLinksAdmin;
 
   return (
     <>
