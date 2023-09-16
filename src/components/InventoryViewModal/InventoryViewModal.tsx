@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Item } from '../../types/inventory.types';
-import getFormattedDate from '../../utils/getFormattedDate';
+import { getNormalFormattedDate } from '../../utils/getFormattedDate';
 import styles from './InventoryViewModal.module.css';
 
 type InventoryViewModalProps = {
@@ -38,36 +38,53 @@ function InventoryViewModal({
         <h2 className={styles.title}>Item Detail</h2>
 
         <div className={styles.contentBlock}>
-          <p className={styles.contentTitle}>{item.name}</p>
+          <p className={styles.contentTitle}>
+            Name: <span className={styles.itemValue}>{item.name}</span>
+          </p>
         </div>
 
         <div className={styles.contentBlock}>
           <p className={styles.contentTitle}>Description</p>
-          <p className={styles.content}>{item.description}</p>
+          <p className={styles.content}>
+            <span className={styles.itemValue}>{item.description}</span>
+          </p>
         </div>
 
         <div className={styles.contentBlock}>
-          <p className={styles.contentTitle}>Category</p>
-          <p className={styles.content}>{item.category}</p>
+          <p className={styles.contentTitle}>
+            Category: <span className={styles.itemValue}>{item.category}</span>
+          </p>
         </div>
 
         <div className={styles.contentBlock}>
-          <p className={styles.contentTitle}>Location</p>
-          <p className={styles.content}>{item.location}</p>
+          <p className={styles.contentTitle}>
+            Location: <span className={styles.itemValue}>{item.location}</span>
+          </p>
         </div>
 
-        <p className={styles.content}>Items Working: {item.working}</p>
-        <p className={styles.content}>Items Not Working: {item.notWorking}</p>
+        <div className={styles.contentBlock}>
+          <p className={styles.contentTitle}>
+            Quantity:{' '}
+            <span className={styles.itemValue}>{item.notWorking}</span>
+          </p>
+        </div>
 
-        <p className={styles.content}>
-          Expiry Date: {getFormattedDate(item.expiry)}
-        </p>
-        <p className={styles.content}>
-          Item Created On: {getFormattedDate(item.createdAt)}
-        </p>
-        <p className={styles.content}>
-          Item Updated On: {getFormattedDate(item.updatedAt)}
-        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Created</th>
+              <th>Updated</th>
+              <th>Expires On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{getNormalFormattedDate(item.createdAt)}</td>
+              <td>{getNormalFormattedDate(item.updatedAt)}</td>
+              <td>{getNormalFormattedDate(item.expiry)}</td>
+            </tr>
+          </tbody>
+        </table>
 
         <div className={styles.buttons}>
           <input

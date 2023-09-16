@@ -21,7 +21,7 @@
   margin: 0 20px;
   padding: 2rem;
 }
-.content{
+.content {
   margin-bottom: 1rem;
 }
 
@@ -116,4 +116,39 @@
   .buttons {
     flex-direction: column-reverse;
   }
+}
+
+.InventoryViewModal table {
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  text-align: left;
+}
+
+.InventoryViewModal th {
+  border: 1px solid black;
+  background-color: #d0def2;
+  padding: 0.75rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.InventoryViewModal td {
+  border: 1px solid black;
+  padding: 1rem 2rem;
+}
+
+.InventoryViewModal tr:nth-child(even) {
+  background-color: #f3f8fe;
+}
+
+.contentTitle {
+  font-weight: 500;
+}
+
+.itemValue {
+  color: rgb(var(--text-color-light));
 }
