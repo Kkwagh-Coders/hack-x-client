@@ -195,8 +195,7 @@ function AddUserModal({ closeModalCallback }: AddUserModalProps) {
             <label htmlFor="role">
               {formik.touched.role && formik.errors.role
                 ? formik.errors.role
-                : 'Branch'}
-              <span className="required">*</span>
+                : 'Role'}
 
               <select
                 name="role"
