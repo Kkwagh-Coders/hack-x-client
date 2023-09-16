@@ -166,7 +166,10 @@ function Inventory() {
                     }
                   >
                     {getDaysBetween(new Date(), new Date(item.expiry)) >= 0
-                      ? getDaysBetween(new Date(), new Date(item.expiry))
+                      ? `${getDaysBetween(
+                          new Date(),
+                          new Date(item.expiry),
+                        )} Days`
                       : 'Expired'}
                   </td>
 
