@@ -53,6 +53,8 @@
   background-color: red;
   padding: 0.2rem 1rem;
   text-align: center;
+
+  text-transform: capitalize;
 }
 
 .adminRole {

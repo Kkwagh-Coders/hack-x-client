@@ -47,24 +47,26 @@
   padding: 1rem 2rem;
 }
 
-.role {
+.action {
   border-radius: 0.2rem;
   background-color: red;
-  padding: 0.2rem 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
+
+  text-transform: capitalize;
 }
 
-.adminRole {
+.deletedAction {
   background-color: #ffcdd2;
   color: #c62828;
 }
 
-.staffRole {
+.updatedAction {
   background-color: #fff0c2;
   color: #a68b00;
 }
 
-.teacherRole {
+.createdAction {
   background-color: #c8e6c9;
   color: #388e3c;
 }

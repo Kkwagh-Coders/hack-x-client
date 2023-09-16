@@ -5,6 +5,7 @@ import InventoryLogViewModal from '../../components/InventoryLogViewModal/Invent
 import TableBodySkeleton from '../../components/TableBodySkeleton/TableBodySkeleton';
 import { getInventoryLog } from '../../services/inventory.services';
 import { InventoryLog as InventoryLogType } from '../../types/inventory.types';
+import { getNormalFormattedDate } from '../../utils/getFormattedDate';
 import styles from './InventoryLog.module.css';
 
 const inventoryLogTableHeader = [
@@ -56,14 +57,24 @@ function InventoryLog() {
 
           <tbody className={styles.tableBody}>
             {logTableData?.map((log) => {
+              let actionClass = '';
+              if (log.action === 'created') actionClass = styles.createdAction;
+              else if (log.action === 'updated')
+                actionClass = styles.updatedAction;
+              else actionClass = styles.deletedAction;
+
               return (
                 <tr key={log._id}>
                   <td>{log.userId.firstName}</td>
                   <td>{log.userId.email}</td>
-                  <td>{log.createdAt}</td>
+                  <td>{getNormalFormattedDate(log.createdAt)}</td>
 
                   {/* TODO: Assign color to the action like the user */}
-                  <td>{log.action}</td>
+                  <td>
+                    <p className={`${styles.action} ${actionClass}`}>
+                      {log.action}
+                    </p>
+                  </td>
 
                   <td className={styles.actionCell}>
                     <BiDetail
