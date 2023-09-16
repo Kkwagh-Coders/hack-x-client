@@ -14,6 +14,7 @@ import InventoryViewModal from '../../components/InventoryViewModal/InventoryVie
 import TableBodySkeleton from '../../components/TableBodySkeleton/TableBodySkeleton';
 import { getInventory } from '../../services/inventory.services';
 import { Item } from '../../types/inventory.types';
+import getDaysBetween from '../../utils/getDaysBetween';
 import getFormattedDate, {
   getNormalFormattedDate,
 } from '../../utils/getFormattedDate';
@@ -25,6 +26,7 @@ const inventoryTableHeader = [
   { title: 'category', name: 'category' },
   { title: 'Quantity', name: 'notWorking' },
   { title: 'Expiry', name: 'expiry' },
+  { title: 'Expires In', name: null },
   { title: 'View', name: null },
   { title: 'Edit', name: null },
   { title: 'Delete', name: null },
@@ -153,6 +155,19 @@ function Inventory() {
                     }
                   >
                     {getNormalFormattedDate(item.expiry)}
+                  </td>
+
+                  <td
+                    className={
+                      new Date(getFormattedDate(item.expiry)).getTime() <
+                      new Date().getTime()
+                        ? styles.expired
+                        : ''
+                    }
+                  >
+                    {getDaysBetween(new Date(), new Date(item.expiry)) >= 0
+                      ? getDaysBetween(new Date(), new Date(item.expiry))
+                      : 'Expired'}
                   </td>
 
                   <td className={styles.actionCell}>
